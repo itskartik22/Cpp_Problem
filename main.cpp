@@ -83,30 +83,30 @@ using namespace std;
 // }
 
 // Print Prime
-int main()
-{
-    int n, temp;
-    temp = 0;
-    cout << "Enter Number : ";
-    cin >> n;
-    for (int i = 1; i <= n; i++)
-    {
-        for (int j = 2; j < i; j++)
-        {
-            if (i % j == 0)
-            {
-                temp++;
-                continue;
-            }
-        }
-        if (temp == 0)
-        {
-            cout << i<<"\n";
-        }
-        temp = 0;
-    }
-    return 0;
-}
+// int main()
+// {
+//     int n, temp;
+//     temp = 0;
+//     cout << "Enter Number : ";
+//     cin >> n;
+//     for (int i = 1; i <= n; i++)
+//     {
+//         for (int j = 2; j < i; j++)
+//         {
+//             if (i % j == 0)
+//             {
+//                 temp++;
+//                 continue;
+//             }
+//         }
+//         if (temp == 0)
+//         {
+//             cout << i<<"\n";
+//         }
+//         temp = 0;
+//     }
+//     return 0;
+// }
 
 // Size of Data Type
 

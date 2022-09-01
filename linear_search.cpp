@@ -25,7 +25,7 @@ int main(int argc, char const *argv[])
 {
     int target;
     cin >> target;
-    int arr[] = {};
+    int arr[] = {2, 4, 6, 8, 0, 12, 10, 34, 7, 13};
     int n = sizeof(arr) / sizeof(arr[0]);  //Size of array
     cout << linearSearch(arr, target, n);
     return 0;

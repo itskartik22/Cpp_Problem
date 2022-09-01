@@ -1,44 +1,26 @@
+//Find Numbers with Even Number of Digits
 #include<iostream>
-#include<vector>
 using namespace std;
 
-    vector<int> shuffle(vector<int> &nums, int n)
-    {
-        int k = 0;
-        vector<vector<int>> vec;
-        for (int i = 0; i < 2; i++)
-        {
-            vector<int> temp;
-            do{
-                int j = nums[k];
-                temp.push_back(nums[k]);
-                k++;
-            }while(k != n && k != 2*n);
-            if(k<2*n){
-                k++;
-            }
-            for(auto& element:temp){
-                  cout<<element<<" ";
-            }
-            vec.push_back(temp);
+int numEvenDigit(int arr[],int size){
+int ans=0;
+    for(int i=0;i<size;i++){
+        int digit=0;
+        while(arr[i]!=0){
+            arr[i] =  arr[i]/10;
+            digit++;
+        }
+        if(digit%2==0){
+            ans++;
         }
 
-        vector<int> ans;
-        for(int i=0;i<vec.size();i++){
-            for(int j=0;j<vec[i].size();j++){
-                ans.push_back(vec[j][i]);
-            }
-        }
-        return ans;
     }
+    return ans;
+}
 
-    int main(){
-        int n=3;
-        vector<int> nums {2,5,1,3,4,7};
-        vector<int> ans;
-        ans=shuffle(nums,n);
-        for(int& element : ans){
-            cout<<element;
-        }
-        return 0;
-    }
+int main(){
+    int arr[]={121,345,2,521,789,361};
+    int size = sizeof(arr) / sizeof(arr[0]);
+    cout<<numEvenDigit(arr,size);
+    return 0;
+}
