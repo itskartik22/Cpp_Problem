@@ -83,30 +83,29 @@ using namespace std;
 // }
 
 // Print Prime
-// int main()
-// {
-//     int n, temp;
-//     temp = 0;
-//     cout << "Enter Number : ";
-//     cin >> n;
-//     for (int i = 1; i <= n; i++)
-//     {
-//         for (int j = 2; j < i; j++)
-//         {
-//             if (i % j == 0)
-//             {
-//                 temp++;
-//                 continue;
-//             }
-//         }
-//         if (temp == 0)
-//         {
-//             cout << i<<"\n";
-//         }
-//         temp = 0;
-//     }
-//     return 0;
-// }
+int main()
+{
+    int n, temp;
+    temp = 0;
+    printf("Enter Number : "); //Taking input to upto which you have to print..
+    scanf("%d",&n);
+    for (int i = 1; i <= n; i++) //Checking each number to print or not..
+    {
+        for (int j = 2; j < i; j++) //for each i value checking is it divisible from 2 to less than i 
+        {
+            if (i % j == 0) 
+            {
+                temp++; //counting
+            }
+        }
+        if (temp == 0) //counting is zero
+        {
+            printf("%d\n",i);  //following number is prime
+        }
+        temp = 0;
+    }
+    return 0;
+}
 
 // Size of Data Type
 

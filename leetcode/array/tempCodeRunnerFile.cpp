@@ -1,19 +1,31 @@
-int firstMissingPositive(vector<int> &nums)
+int maxFunction(vector<int> &piles)
 {
-    bool find = false;
-    int n=nums.size();
-    int maxi=nums[0];
-    for(int i=0;i<n;i++){
-        find=false;
-        for(int j=0;j<n;j++){
-            maxi = max(maxi,nums[j]);
-            if(i+1==nums[j]){
-                find=true;
+    int maxi = INT_MIN;
+    for (auto val : piles)
+    {
+        maxi = max(maxi, val);
+    }
+    return maxi;
+}
+int minEatingSpeed(vector<int> &piles, int h)
+{
+    int num = maxFunction(piles);
+    int count = 0;
+    for (int i = 1; i <= num; i++)
+    {
+        count = 0;
+        for (int j = 0; j < piles.size(); j++)
+        {
+            int value = piles[j];
+            while (value >= 0)
+            {
+                value -= i;
+                count++;
             }
         }
-        if(find==false){
-            return i+1;
+        if (count == h)
+        {
+            return i;
         }
     }
-    return maxi+1;
 }
