@@ -1,72 +1,65 @@
 #include <bits/stdc++.h>
 using namespace std;
+// Optimized Method
+//  int minEatingSpeed(vector<int> &piles, int h)
+//  {
+//      int high = INT_MIN;
+//      for (auto val : piles)
+//      {
+//          high = max(high, val);
+//      }
+//      int ans = 0;
+//      int low = 1;
+//      while (low < high)
+//      {
+//          int mid = low + (high - low) / 2;
+//          int val = 0;
+//          // time calculation if speed is k
+//          for (auto a : piles)
+//              val += (a + mid - 1) / mid;
+//          // checking with given hour
+//          if (val <= h)
+//          {
+//              high = mid;
+//          }
+//          else
+//          {
+//              low = mid + 1;
+//          }
+//      }
+//      return low;
+//  }
+//  Normal Method
 int minEatingSpeed(vector<int> &piles, int h)
 {
-    int high = INT_MIN;
-    for (auto val : piles)
+    int max_pile = piles[0];
+    for (auto pile : piles)
     {
-        high = max(high, val);
+        max_pile = max(max_pile, pile);
     }
-    int ans = 0;
-    int low = 1;
-    while (low < high)
+    int k = 1, i;
+    while (k <= max_pile)
     {
-        int mid = low + (high - low) / 2;
-        int val = 0;
-        // time calculation if speed is k
-        for (auto a : piles)
-            val += (a + mid - 1) / mid;
-        //checking with given hour   
-        else if(val<=h){
-            high = mid;
+        int time = 0;
+        for (i = 0; i < piles.size(); i++)
+        {
+            time += (piles[i] + k - 1) / k;
         }
-        else{
-            low = mid + 1;
+        if (time <= h)
+        {
+            break;
+        }
+        else
+        {
+            k++;
         }
     }
-    return low;
+    return k;
 }
 int main()
 {
-    vector<int> vec = {3,6,7,11};
-    // vector<int> vec = {30, 11, 23, 4, 20};
-    int h = 8;
+    vector<int> vec = {332484035, 524908576, 855865114, 632922376, 222257295, 690155293, 112677673, 679580077, 337406589, 290818316, 877337160, 901728858, 679284947, 688210097, 692137887, 718203285, 629455728, 941802184};
+    int h =  823855818;
     cout << minEatingSpeed(vec, h);
     return 0;
 }
-// Brute Force Method ...
-//  int maxFunction(vector<int> &piles)
-//  {
-//      int maxi = INT_MIN;
-//      for (auto val : piles)
-//      {
-//          maxi = max(maxi, val);
-//      }
-//      return maxi;
-//  }
-//  int minEatingSpeed(vector<int> &piles, int h)
-//  {
-//      int num = maxFunction(piles);
-//      int count = 0;
-//      int ans = 1;
-//      for (int i = 1; i <= num; ++i)
-//      {
-//          int k = i;
-//          count = 0;
-//          for (int j = 0; j < piles.size(); j++)
-//          {
-//              int value = piles[j];
-//              while (value > 0)
-//              {
-//                  value -= k;
-//                  count++;
-//              }
-//          }
-//          if (count == h)
-//          {
-//              ans = k;
-//              break;
-//          }
-//      }
-//      return ans;
-//  }
