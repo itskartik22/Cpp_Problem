@@ -1,34 +1,22 @@
-vector<int> twoSum(vector<int> & nums, int target)
+//OPtimized
+vector<int> twoSum(vector<int> &nums, int target)
+{
+    vector<int> res;
+    unordered_map<int, int> imap;
+    unordered_map<int, int>::iterator itr;
+    for (int i = 0; i < nums.size(); i++)
     {
-        unordered_map<int,int> hash;
-        for(int i=0;i<nums.size();i++){
-            hash.insert(pair<int,int>(nums[i],i));
+        itr=imap.find(target-nums[i]);
+        if(itr!=imap.end()){
+            res={i,itr->second};
+            break;
         }
-        vector<int> arr = nums;
-        sort(nums.begin(), nums.end());
-        vector<int> res;
-        int i = 0, j = nums.size() - 1;
-        while (i < j)
-        {
-            int sum = nums[i] + nums[j];
-            if (sum > target)
-            {
-                j--;
-            }
-            else if (sum < target)
-            {
-                i++;
-            }
-            else
-            {
-                res = {hash.find(nums[i]),hash.find(nums[j])};
-                break;
-            }
-        }
-        return res;
+        imap[nums[i]]=i;
     }
+    return res;
+}
 
-    //Another method
+//Optimized and Brute Force Method
 //     vector<int> vecindices(vector<int> &arr, int num1, int num2)
 // {
 //     vector<int> indices;
@@ -75,3 +63,20 @@ vector<int> twoSum(vector<int> & nums, int target)
 //         }
 //         return res;
 //     }
+
+
+
+// Brute Force Time complexity O(n^2)
+// vector<int> twoSum(vector<int> &nums, int target)
+// {
+//     vector<int> res;
+//     for (int i = 0; i < nums.size(); i++)
+//     {
+//         for (int j = i + 1; j < nums; j++;)
+//         {
+//             if (nums[i] + nums[j] == target)
+//                 res = {i, j};
+//         }
+//     }
+//     return res;
+// }

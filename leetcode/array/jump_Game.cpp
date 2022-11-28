@@ -2,41 +2,63 @@
 #include <vector>
 #include <limits>
 using namespace std;
-// bool canJump(vector<int> &nums);
+
+//Optimized Code
 bool canJump(vector<int> &nums)
 {
-    int index = 0, counter = 1;
-    int maxi = nums[0];
-    while (index + maxi < nums.size() - 1)
+    int goal = nums.size() - 1;
+    for (int i = nums.size() - 2; i >= 0; i--)
     {
-        int num_loop = nums[index];
-        if (num_loop <= 0)
+        if (i + nums[i] >= goal)
         {
-            return false;
+            goal = i;
         }
-        else
-        {
-            maxi = nums[index + num_loop];
-            int primary_index = index + num_loop;
-            for (int j = num_loop; j >= 1; j--)
-            {
-                if (maxi < nums[index + j])
-                {
-                        maxi = nums[j + index];
-                        primary_index = index + j;
-                }
-            }
-            index = primary_index;
-        }
-        // counter++;
     }
-    // cout << counter << endl;
-    return true;
+    return (goal==0)?true:false;
 }
+
+// Brute Force method
+//  bool canJump(vector<int> &nums)
+//  {
+//      int index = 0, counter = 1;
+//      int maxi = nums[0];
+//      while (index + maxi < nums.size() - 1)
+//      {
+//          int num_loop = nums[index];
+//          if (num_loop <= 0)
+//          {
+//              return false;
+//          }
+//          else
+//          {
+//              maxi = nums[index + num_loop];
+//              int primary_index = index + num_loop;
+//              for (int j = num_loop; j >= 1; j--)
+//              {
+//                  if (maxi < nums[index + j])
+//                  {
+//                      if (index + j + nums[index + j] < nums.size()-1 && nums[index + j + nums[index + j]] == 0)
+//                      {
+//                          continue;
+//                      }
+//                      else
+//                      {
+//                          maxi = nums[j + index];
+//                          primary_index = index + j;
+//                      }
+//                  }
+//              }
+//              index = primary_index;
+//          }
+//          // counter++;
+//      }
+//      // cout << counter << endl;
+//      return true;
+//  }
 int main()
 {
     // vector<int> nums = {3, 2, 1, 1, 1, 2, 1, 2, 2, 0, 0};
-    vector<int> nums = {5,9,3,2,1,0,2,3,3,1,0,0};
+    vector<int> nums = {5, 9, 3, 2, 1, 0, 2, 3, 3, 1, 0, 0};
     // vector<int> nums = {3, 2, 1, 0, 1, 1, 4, 4, 4, 0, 4, 0};
     // vector<int> nums = {4,2,0,0,1,1,4,4,4,0,4,0};
     if (canJump(nums) == true)
